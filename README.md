@@ -38,5 +38,5 @@ I'm a passionate Data Analyst with a strong interest in Technology . I love lear
 LinkedIn (https://www.linkedin.com/in/bradley-hamilton-8884b71b0/)
 Twitter (https://x.com/Brad_Hamilton21)]
 Instagram (https://www.instagram.com/greatvalue_kevin/)
-[![Cell #](513-913-8229)]
+Cell # (513-913-8229)]
 
