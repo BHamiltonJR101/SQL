@@ -17,7 +17,7 @@ I'm a passionate Data Analyst with a strong interest in Technology . I love lear
 - 🤔 I’m looking for help with any learning, or job opportunities.
 - 💬 Ask me about SQL, Tableau, Exel, and Python .
 - 📫 How to reach me: [Email Me](Bhamiltonjr57@gmail.com)
-- ⚡ Fun fact: I enjoy Anime and playing the guitar in my free time.
+- ⚡ Fun fact: I enjoy Anime.
 
 ## Languages and Tools
 
