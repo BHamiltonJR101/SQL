@@ -1,0 +1,64 @@
+#In this SQL, I'm querying a database with multiple tables in it to quantify statistics about customer and order data. 
+
+-- Query #1
+--How many orders were placed in January?
+--Remember to filter out the blank and incorrect order IDs like we did in the "dealing with messy data" section of the previous lesson!
+
+SELECT COUNT(Quantity)
+FROM BIT_DB.JanSales
+WHERE length(orderid) = 6
+AND orderid <> 'Order ID';
+
+--Query #2
+--How many of those orders were for an iPhone?
+Select COUNT(Product)
+From JanSales
+Where Product='iPhone'
+AND length(orderid) = 6
+or orderid <> 'Order ID';
+
+--Query #3
+--Select the customer account numbers for all the orders that were placed in February.
+SELECT distinct acctnum
+FROM BIT_DB.customers cust
+INNER JOIN BIT_DB.FebSales Feb
+ON cust.order_id=FEB.orderid
+WHERE length(orderid) = 6
+AND orderid <> 'Order ID';
+
+--Question #4
+--Which product was the cheapest one sold in January, and what was the price?
+SELECT distinct product, min(price)
+FROM JanSales
+GROUP BY product;
+
+--Question #5
+--What is the total revenue for each product sold in January?
+--(Revenue can be calculated using the number of products sold and the price of the products).
+SELECT Sum(Quantity)*price AS Revenue, Product
+FROM BIT_DB.JanSales
+Where length (orderid) = 6
+And orderid<> 'Order ID'
+GROUP BY Product;
+
+--Question #6
+--Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what was the total revenue?
+SELECT 
+Product,
+SUM(Quantity),
+SUM(Quantity)*price AS Revenue
+FROM BIT_DB.FebSales
+WHERE location='548 Lincoln St, Seattle, WA 98101'
+GROUP BY Product;
+
+--Question #7
+--How many customers ordered more than 2 products at a time in February, and what was the average amount spent for those customers?
+SELECT
+count(distinct cust.acctnum) AS acct,
+avg(quantity*price)AS AVGspent
+FROM BIT_DB.FebSales Feb
+LEFT JOIN BIT_DB.customers cust
+ON FEB.orderid=cust.order_id
+WHERE Feb.Quantity>2
+AND length(orderid) = 6
+AND orderid <> 'Order ID';
