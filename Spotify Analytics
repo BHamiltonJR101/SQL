@@ -27,3 +27,65 @@ time_signature integer NOT NULL
 #Then I inserted the Spotify Data .csv into the table.
 
 #Next, I explored the data using the following SQL. 
+
+--Question 1) What are the top 10 songs
+
+SELECT *
+  FROM BIT_DB.Spotifydata
+ ORDER BY popularity DESC
+ LIMIT 10;
+ 
+-- Question 2) How many songs are High tempo(120-140 BPM), Moderate Tempo(81-119 BPM), or low Tempo(60-80 BPM)
+
+SELECT 
+Count(*) AS Tracks,
+ 
+ CASE WHEN tempo > 120 
+ THEN "HIGH"
+  
+ WHEN tempo > 81 
+ THEN "MOD"
+  
+  ELSE "LOW" 
+  END AS HML
+  FROM BIT_DB.Spotifydata
+ Group BY HML;
+ 
+--Question 3) What Artist has the most songs in the top 50
+SElect Count(*) As Songs,
+artist_name
+From BIT_DB.Spotifydata
+Group by artist_name
+order by Songs Desc;
+
+--Question 4) What is the average duration for the songs in minutes
+
+Select AVG (duration_ms)/60000 Song_time
+From BIT_DB.Spotifydata;
+
+--Question 5) What is the avg popularity, danceability,and energy by artist and track
+
+Select 
+track_name,
+artist_name,
+AVG(popularity),
+AVG(danceability),
+AVG(energy)
+FROM Spotifydata
+Group by artist_name, track_name;
+
+--Question 6) What is the top 5 loudest songs, what is the key and where did they plce
+Select
+song_key,
+loudness,
+id AS TOP_50_Spot,
+track_name 
+FROM Spotifydata
+order by loudness DEsc, id
+Limit 5;
+
+--Question 7) How many songs have a 1 song mode
+Select *
+FROM Spotifydata
+Where song_mode='1'
+order by popularity desc
